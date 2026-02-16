@@ -1,0 +1,18 @@
+name: Keep Dev Up to Date
+
+on:
+  # Run manually.
+  workflow_dispatch:
+  # Run on the 1st of every month, before Renovate updates on the 5th.
+  schedule:
+    - cron: 0 4 1 * *
+
+jobs:
+  keep-dev-up-to-date:
+    name: Keep Dev Up to Date
+    uses: Lombiq/GitHub-Actions/.github/workflows/open-pull-request.yml@dev
+    secrets:
+      CHECKOUT_TOKEN: ${{ secrets.LOMBIQBOT_GITHUB_PERSONAL_ACCESS_TOKEN }}
+    with:
+      source-branch: main
+      pull-request-body: '@Lombiq/dotnest-sites-renovate-notification-recipients'
