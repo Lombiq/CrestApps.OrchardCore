@@ -9,6 +9,7 @@ using OrchardCore.Liquid;
 using OrchardCore.Settings;
 using OrchardCore.Users;
 using OrchardCore.Users.Models;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CrestApps.OrchardCore.Users.Core.Services;
 
@@ -28,6 +29,7 @@ public sealed class DisplayNameProvider : IDisplayNameProvider
         _logger = logger;
     }
 
+    [SuppressMessage("Performance", "CA1873:Avoid potentially expensive logging", Justification = "Not our code.")]
     public async Task<string> GetAsync(IUser user)
     {
         if (user == null)
